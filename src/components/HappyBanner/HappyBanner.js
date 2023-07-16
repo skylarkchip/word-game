@@ -1,12 +1,15 @@
 import React from "react";
 
-function HappyBanner({ numOfGuesses }) {
+function HappyBanner({ numOfGuesses, restartGame }) {
   return (
     <div className="happy banner">
       <p>
-        <strong>Congratulations!</strong> Got it in{" "}
+        <strong>Great!</strong> You got the correct answer in{" "}
         <strong>{numOfGuesses} guesses</strong>.
       </p>
+      <button className="restart-button" onClick={restartGame}>
+        Restart Game
+      </button>
     </div>
   );
 }

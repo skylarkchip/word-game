@@ -11,11 +11,13 @@ import Keyboard from "../Keyboard/Keyboard";
 import { checkGuess } from "../../game-helpers";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+// const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 // console.info({ answer });
 
 function Game() {
+  const [answer, setAnswer] = useState(sample(WORDS));
+  console.log(answer);
   const [guesses, setGuesses] = useState([]);
 
   const [gameStatus, setGameStatus] = useState("");
@@ -34,6 +36,13 @@ function Game() {
     }
   }
 
+  function restartGame() {
+    const newGame = sample(WORDS);
+    setAnswer(newGame);
+    setGuesses([]);
+    setGameStatus("");
+  }
+
   const verifyAllGuesses = guesses.map((guess) => checkGuess(guess, answer));
 
   return (
@@ -44,8 +53,12 @@ function Game() {
         numOfGuesses={guesses.length}
       />
       <Keyboard verifiedGuesses={verifyAllGuesses} />
-      {gameStatus === "won" && <HappyBanner numOfGuesses={guesses.length} />}
-      {gameStatus === "lost" && <SadBanner answer={answer} />}
+      {gameStatus === "won" && (
+        <HappyBanner numOfGuesses={guesses.length} restartGame={restartGame} />
+      )}
+      {gameStatus === "lost" && (
+        <SadBanner answer={answer} restartGame={restartGame} />
+      )}
     </>
   );
 }
