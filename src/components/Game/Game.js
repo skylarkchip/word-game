@@ -17,7 +17,7 @@ import { checkGuess } from "../../game-helpers";
 
 function Game() {
   const [answer, setAnswer] = useState(sample(WORDS));
-  console.log(answer);
+
   const [guesses, setGuesses] = useState([]);
 
   const [gameStatus, setGameStatus] = useState("");
