@@ -7,6 +7,8 @@ import GuessResults from "../GuessResults/GuessResults";
 import HappyBanner from "../HappyBanner/HappyBanner";
 import SadBanner from "../SadBanner/SadBanner";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import Keyboard from "../Keyboard/Keyboard";
+import { checkGuess } from "../../game-helpers";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -32,6 +34,8 @@ function Game() {
     }
   }
 
+  const verifyAllGuesses = guesses.map((guess) => checkGuess(guess, answer));
+
   return (
     <>
       <GuessResults guesses={guesses} answer={answer} />
@@ -39,6 +43,7 @@ function Game() {
         onHandleSubmit={onHandleSubmittedGuess}
         numOfGuesses={guesses.length}
       />
+      <Keyboard verifiedGuesses={verifyAllGuesses} />
       {gameStatus === "won" && <HappyBanner numOfGuesses={guesses.length} />}
       {gameStatus === "lost" && <SadBanner answer={answer} />}
     </>

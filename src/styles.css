@@ -230,3 +230,46 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+/* KEYBOARD */
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8px;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 8px;
+}
+
+.key {
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 16px;
+}
+
+.key.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+.key.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+.key.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
+@media screen and (max-width: 480px) {
+  .key {
+    padding: 8px;
+  }
+}
