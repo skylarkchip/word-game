@@ -6,6 +6,9 @@ function GuessInput({ onHandleSubmit, numOfGuesses }) {
 
   function onFormSubmitHandler(e) {
     e.preventDefault();
+
+    if (!guess) return;
+
     onHandleSubmit(guess);
     setGuess("");
   }
